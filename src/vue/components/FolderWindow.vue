@@ -5,6 +5,8 @@
     :style="windowStyles"
     @mousedown="focusWindow"
     @touchstart="focusWindow"
+    @click.stop
+    @touchstart.stop
     class="bg-[#121212] border border-gray-800 rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono"
   >
     <!-- Header/Title bar (draggable handle) -->
@@ -13,7 +15,7 @@
       @touchstart="startTouchDrag"
       class="px-6 py-3 bg-[#181818] border-b border-gray-800/50 flex items-center justify-between cursor-move select-none"
     >
-      <!-- Traffic light control buttons -->
+      <!-- Traffic light control buttons (functional on folder windows) -->
       <div class="flex gap-2 group">
         <button 
           @click.stop="closeWindow"
@@ -80,11 +82,20 @@ const windowRef = ref(null);
 
 let dragStart = { x: 0, y: 0 };
 const isDragging = ref(false);
+let outsideTimer = null;
 
 // Focus window: bring it to front by getting the next highest z-index
 const focusWindow = () => {
   if (window.getNextZIndex) {
     zIndex.value = window.getNextZIndex();
+  }
+};
+
+// Tap / click outside auto-close handler
+const handleClickOutside = (e) => {
+  if (isClosed.value || !windowRef.value) return;
+  if (!windowRef.value.contains(e.target)) {
+    closeWindow();
   }
 };
 
@@ -100,6 +111,11 @@ onMounted(() => {
   const defaultY = Math.max(40, (window.innerHeight - targetHeight) / 2 + offset);
   
   position.value = { x: defaultX, y: defaultY };
+
+  outsideTimer = setTimeout(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+  }, 100);
 });
 
 // Window styles computation: 70% of viewport width and height
@@ -206,6 +222,9 @@ const stopTouchDrag = () => {
 };
 
 onUnmounted(() => {
+  if (outsideTimer) clearTimeout(outsideTimer);
+  document.removeEventListener('mousedown', handleClickOutside);
+  document.removeEventListener('touchstart', handleClickOutside);
   stopDrag();
   stopTouchDrag();
 });

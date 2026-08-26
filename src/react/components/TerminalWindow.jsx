@@ -58,23 +58,11 @@ export default function TerminalWindow() {
         className="px-6 py-3 bg-[#181818] border-b border-gray-800/50 flex items-center justify-between select-none"
         data-purpose="window-controls"
       >
-        {/* Left Side: Traffic Lights */}
-        <div className="flex gap-2 group">
-          <button
-            onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
-            className="w-3.5 h-3.5 rounded-full bg-red-500/90 relative flex items-center justify-center hover:bg-red-600 transition-colors traffic-light-btn traffic-light-close"
-            title="Close"
-          />
-          <button
-            onClick={(e) => { e.stopPropagation(); setIsMinimized(!isMinimized); }}
-            className="w-3.5 h-3.5 rounded-full bg-yellow-500/90 relative flex items-center justify-center hover:bg-yellow-600 transition-colors traffic-light-btn traffic-light-minimize"
-            title="Minimize"
-          />
-          <button
-            onClick={(e) => { e.stopPropagation(); setIsMaximized(!isMaximized); }}
-            className="w-3.5 h-3.5 rounded-full bg-green-500/90 relative flex items-center justify-center hover:bg-green-600 transition-colors traffic-light-btn traffic-light-maximize"
-            title="Maximize"
-          />
+        {/* Left Side: Traffic Lights (Static - active only on folder windows) */}
+        <div className="flex gap-2 select-none">
+          <div className="w-3.5 h-3.5 rounded-full bg-red-500/80" />
+          <div className="w-3.5 h-3.5 rounded-full bg-yellow-500/80" />
+          <div className="w-3.5 h-3.5 rounded-full bg-green-500/80" />
         </div>
 
         {/* Center: Title */}

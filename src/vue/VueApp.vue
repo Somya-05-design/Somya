@@ -1,6 +1,14 @@
 <template>
   <!-- Transparent global container, allowing clicks to pass through to elements underneath -->
   <div class="pointer-events-none fixed inset-0 z-30 overflow-hidden">
+    <!-- Semi-transparent backdrop when folder windows are active -->
+    <div 
+      v-if="activeWindows.length > 0"
+      class="fixed inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-auto transition-opacity duration-200"
+      @click="closeAllWindows"
+      @touchstart="closeAllWindows"
+    />
+
     <!-- Render all active folder windows -->
     <FolderWindow
       v-for="(win, idx) in activeWindows"
@@ -9,7 +17,7 @@
       :type="win.type"
       :index="idx"
       @close="closeWindow(win.id)"
-      class="pointer-events-auto"
+      class="pointer-events-auto relative z-30"
     >
       <WindowContent :type="win.type" />
     </FolderWindow>
@@ -44,6 +52,10 @@ const handleOpenWindow = (e) => {
 
 const closeWindow = (id) => {
   activeWindows.value = activeWindows.value.filter(w => w.id !== id);
+};
+
+const closeAllWindows = () => {
+  activeWindows.value = [];
 };
 
 onMounted(() => {
