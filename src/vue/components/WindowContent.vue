@@ -99,17 +99,18 @@
         <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
           <div class="flex justify-between items-start mb-2">
             <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
-              Hyperion Gate
+              Docstation
             </h3>
-            <span class="text-xs text-gray-500 font-bold">Go &amp; gRPC</span>
+            <span class="text-xs text-gray-500 font-bold">Personal Project</span>
           </div>
           <p class="text-gray-400 text-xs mb-3">
-            A high-performance distributed API Gateway in Go. Integrates dynamic rate limiting, token bucket validation, and JWT validation. Reaches 120k+ req/sec with sub-3ms latency.
-          </p>
+           Built a SpringBoot full-stack platform connecting customers with local print shops for document uploads, customisation, and payment;
+tested PDF preview accuracy and real-time order-tracking flows to ensure reliability.
+ </p>
           <div class="flex gap-2">
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Go</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Java</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">SpringBoot</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Redis</span>
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Docker</span>
           </div>
         </div>
 
@@ -117,17 +118,20 @@
         <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
           <div class="flex justify-between items-start mb-2">
             <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
-              Hermes PubSub Pipeline
+              Naviure Photography
             </h3>
-            <span class="text-xs text-gray-500 font-bold">Python &amp; Kafka</span>
+            <span class="text-xs text-gray-500 font-bold">Client Project</span>
           </div>
           <p class="text-gray-400 text-xs mb-3">
-            A resilient real-time event ingestion and routing hub capable of ingestion speeds of 10M+ events daily with zero message loss guarantee.
+            Developed and tested a full-stack portfolio website for a client, verifying functionality of demo modules and service showcases across
+            devices.          
           </p>
           <div class="flex gap-2">
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Python</span>
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Kafka</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">React</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Node</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">PostgreSQL</span>
+                        <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Cloudfare</span>
+
           </div>
         </div>
 
@@ -135,17 +139,18 @@
         <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
           <div class="flex justify-between items-start mb-2">
             <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
-              Sentinel Key-Value DB
+              Autoverse
             </h3>
-            <span class="text-xs text-gray-500 font-bold">C++ 17</span>
+            <span class="text-xs text-gray-500 font-bold">Personal Project</span>
           </div>
           <p class="text-gray-400 text-xs mb-3">
-            An LSM-tree based persistent key-value database written from scratch. Features Memtable flushing, WAL logging, and SSTable compaction.
+          Designed and prototyped an AI workflow automation platform, testing intuitive user experiences for prompt-driven business process
+          automation
           </p>
           <div class="flex gap-2">
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">C++</span>
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Algorithms</span>
-            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Linux APIs</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Next</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Node</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Langchain</span>
           </div>
         </div>
       </div>
@@ -166,12 +171,13 @@
           <!-- Timeline dot -->
           <div class="absolute -left-[31px] top-1 bg-green-500 border border-black w-2.5 h-2.5 rounded-full"></div>
           <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
-            <span class="text-white font-bold text-sm md:text-base">Senior Systems Architect</span>
-            <span class="text-xs text-green-400 font-semibold">2024 - PRESENT</span>
+            <span class="text-white font-bold text-sm md:text-base">SDE Intern</span>
+            <span class="text-xs text-green-400 font-semibold">FEB'26 - MAY'26</span>
           </div>
-          <span class="text-xs text-gray-500 block mb-2">OmniTech Corp</span>
+          <span class="text-xs text-gray-500 block mb-2">CareerOn Pvt. Ltd.</span>
           <p class="text-gray-400 text-xs leading-relaxed">
-            Leading the migration to unified Go/gRPC services. Optimized database query profiles, yielding a 40% reductions in cloud computational overhead.
+          Served as the primary technical point of contact, coordinating sprint delivery and cross-functional development tasks
+          across a 4-person team
           </p>
         </div>
 
@@ -179,25 +185,25 @@
         <div class="relative">
           <div class="absolute -left-[31px] top-1 bg-green-500/60 border border-black w-2.5 h-2.5 rounded-full"></div>
           <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
-            <span class="text-white font-bold text-sm md:text-base">Backend Software Engineer</span>
-            <span class="text-xs text-green-400 font-semibold">2022 - 2024</span>
+            <span class="text-white font-bold text-sm md:text-base">Campaign Manager Intern</span>
+            <span class="text-xs text-green-400 font-semibold">SEPT'25 - DEC'25</span>
           </div>
-          <span class="text-xs text-gray-500 block mb-2">CloudWave Labs</span>
+          <span class="text-xs text-gray-500 block mb-2">Marico Pvt. Ltd.</span>
           <p class="text-gray-400 text-xs leading-relaxed">
-            Maintained Node.js microservices. Integrated Apache Kafka event queues to stream high throughput telemetry and engineered secure REST APIs.
-          </p>
+          Conducted A/B testing on AI-generated content formats, improving content turnaround time from 3 days to same-day delivery          </p>
         </div>
 
         <!-- Job 3 -->
         <div class="relative">
           <div class="absolute -left-[31px] top-1 bg-green-500/30 border border-black w-2.5 h-2.5 rounded-full"></div>
           <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
-            <span class="text-white font-bold text-sm md:text-base">Junior Backend Intern</span>
-            <span class="text-xs text-green-400 font-semibold">2021 - 2022</span>
+            <span class="text-white font-bold text-sm md:text-base">Automation + QA Intern</span>
+            <span class="text-xs text-green-400 font-semibold">MAY'25 - SEPT'25</span>
           </div>
-          <span class="text-xs text-gray-500 block mb-2">ByteScale Studio</span>
+          <span class="text-xs text-gray-500 block mb-2">Walkover Web Solutions</span>
           <p class="text-gray-400 text-xs leading-relaxed">
-            Configured unit tests and automated integration testing pipelines in Python. Deployed static and serverless micro-endpoints onto AWS.
+            Built, Tested and validated 10+ AI agents for intelligent task orchestration, collaborating with the product team to test integration into existing
+            SaaS workflows
           </p>
         </div>
       </div>

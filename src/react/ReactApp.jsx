@@ -15,16 +15,16 @@ export default function ReactApp() {
         // Import dynamically to avoid loading issues
         const { createApp } = await import('vue');
         const { default: DesktopFolders } = await import('../vue/components/DesktopFolders.vue');
-        
+
         const app = createApp(DesktopFolders);
         app.mount(foldersMountRef.current);
-        
+
         return () => {
           app.unmount();
         };
       }
     };
-    
+
     let unmountFn;
     mountVueFolders().then(cleanup => {
       unmountFn = cleanup;
@@ -66,18 +66,18 @@ export default function ReactApp() {
       <section className="w-full max-w-4xl px-8 my-8 font-mono">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-between text-center">
           <div className="flex flex-col items-center">
-            <span className="text-gray-400 text-sm mb-1">+100</span>
-            <span className="text-4xl md:text-5xl font-bold text-white">100M+</span>
+
+            <span className="text-4xl md:text-5xl font-bold text-white">1M+</span>
             <span className="text-gray-400 text-xs mt-2 tracking-widest">AI TOKENS USED</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-gray-400 text-sm mb-1">+2</span>
-            <span className="text-4xl md:text-5xl font-bold text-white">3.1K+</span>
+
+            <span className="text-4xl md:text-5xl font-bold text-white">500+</span>
             <span className="text-gray-400 text-xs mt-2 tracking-widest font-mono">COFFEES DRANK</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-gray-400 text-sm mb-1">+1</span>
-            <span className="text-4xl md:text-5xl font-bold text-white">6.7K+</span>
+
+            <span className="text-4xl md:text-5xl font-bold text-white">1000+</span>
             <span className="text-gray-400 text-xs mt-2 tracking-widest">CODE COMMITS</span>
           </div>
         </div>

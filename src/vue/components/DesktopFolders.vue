@@ -3,6 +3,7 @@
     <div 
       v-for="folder in folders" 
       :key="folder.type"
+      @click="openFolder(folder.type, folder.title)"
       @dblclick="openFolder(folder.type, folder.title)"
       @touchend="handleTouch(folder.type, folder.title)"
       class="flex flex-col items-center gap-2 w-24 group cursor-pointer transition-transform active:scale-95"
@@ -19,7 +20,7 @@
       </span>
       <!-- Hint helper for desktop/mobile -->
       <span class="text-[9px] text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity select-none hidden md:block">
-        Double click
+        Click to open
       </span>
     </div>
   </div>
@@ -36,7 +37,7 @@ const folders = ref([
   },
   {
     type: 'social-life',
-    title: 'Social Life',
+    title: 'Socials',
     img: 'https://lh3.googleusercontent.com/aida/AEtjO1XU8br4d2QKccHyw2Q2H7EZkzhPDLrHd62pMi9UfLxLVCy8JFaTOpmVttkhhQiyNJIwbbVSb1Npf6sHik8cj2mprUR9c9u_BdtEGETMf2puPSG9rQS-fOA-0cSbJN6Wmecb0ipA6sDbezJw0PG1Sa9RgFwFK-XbMjcH5NFg-K1ZOza71bt0eCy3E16iJ4G7KjhAuVkht8KLJZy_MM8MS2Tbeo1lGBs9-HzBZQcP0Z0acvNID4nF1b8Fvg'
   },
   {

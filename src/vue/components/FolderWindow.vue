@@ -44,7 +44,7 @@
     <!-- Window body content slot -->
     <div 
       v-show="!isMinimized"
-      class="p-6 md:p-8 flex-1 overflow-y-auto max-h-[60vh] text-gray-300"
+      class="p-6 md:p-8 flex-1 overflow-y-auto text-gray-300 min-h-0"
     >
       <slot></slot>
     </div>
@@ -91,21 +91,18 @@ const focusWindow = () => {
 onMounted(() => {
   focusWindow();
   
-  // Cascade placement: stagger windows based on index
-  const offset = props.index * 25;
-  if (window.innerWidth < 768) {
-    position.value = {
-      x: 12 + (props.index % 3) * 10,
-      y: 120 + offset
-    };
-  } else {
-    const defaultX = (window.innerWidth - 650) / 2 + offset;
-    const defaultY = 150 + offset;
-    position.value = { x: defaultX, y: defaultY };
-  }
+  const isMobile = window.innerWidth < 768;
+  const targetWidth = isMobile ? window.innerWidth * 0.9 : window.innerWidth * 0.7;
+  const targetHeight = window.innerHeight * 0.7;
+  
+  const offset = (props.index % 5) * 20;
+  const defaultX = Math.max(10, (window.innerWidth - targetWidth) / 2 + offset);
+  const defaultY = Math.max(40, (window.innerHeight - targetHeight) / 2 + offset);
+  
+  position.value = { x: defaultX, y: defaultY };
 });
 
-// Window styles computation
+// Window styles computation: 70% of viewport width and height
 const windowStyles = computed(() => {
   if (isMaximized.value) {
     return {
@@ -121,12 +118,15 @@ const windowStyles = computed(() => {
     };
   }
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   return {
-    position: 'absolute',
+    position: 'fixed',
     left: `${position.value.x}px`,
     top: `${position.value.y}px`,
-    width: '92%',
-    maxWidth: '650px',
+    width: isMobile ? '90vw' : '70vw',
+    height: isMinimized.value ? 'auto' : '70vh',
+    maxHeight: '85vh',
     zIndex: zIndex.value
   };
 });
