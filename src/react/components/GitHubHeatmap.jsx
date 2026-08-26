@@ -1,203 +1,147 @@
 import React, { useState, useEffect } from 'react';
 
 const GITHUB_USERNAME = "Somya-05-design";
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || "";
+
+// Format date string 'YYYY-MM-DD' into 'MMM DD, YYYY'
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const dateObj = new Date(dateStr + 'T00:00:00Z');
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${monthNames[dateObj.getUTCMonth()]} ${dateObj.getUTCDate()}, ${dateObj.getUTCFullYear()}`;
+}
+
+// Map contribution level to GitHub's official dark mode calendar colors
+function getLevelColor(level) {
+  switch (level) {
+    case 1: return '#0e4429';
+    case 2: return '#006d32';
+    case 3: return '#26a641';
+    case 4: return '#39d353';
+    default: return '#161b22';
+  }
+}
+
+// Convert raw API contribution days array into GitHub's calendar grid structure
+function buildCalendarGrid(days) {
+  if (!days || days.length === 0) return { weeks: [], months: [], totalContributions: 0 };
+
+  let totalContributions = 0;
+  const weeks = [];
+  let currentWeek = [];
+
+  const firstDayObj = new Date(days[0].date + 'T00:00:00Z');
+  const firstWeekday = firstDayObj.getUTCDay(); // 0 = Sunday, 6 = Saturday
+
+  // Pad first week if it doesn't start on Sunday
+  for (let i = 0; i < firstWeekday; i++) {
+    currentWeek.push({ isPlaceholder: true, weekday: i });
+  }
+
+  days.forEach(day => {
+    totalContributions += (day.count || 0);
+    const dObj = new Date(day.date + 'T00:00:00Z');
+    const weekday = dObj.getUTCDay();
+
+    if (weekday === 0 && currentWeek.length > 0) {
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+    currentWeek.push({ ...day, weekday });
+  });
+
+  if (currentWeek.length > 0) {
+    // Pad last week if incomplete
+    while (currentWeek.length < 7) {
+      currentWeek.push({ isPlaceholder: true, weekday: currentWeek.length });
+    }
+    weeks.push(currentWeek);
+  }
+
+  // Calculate month labels and their week column indices
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const months = [];
+  let lastMonth = -1;
+
+  weeks.forEach((week, weekIdx) => {
+    const firstRealDay = week.find(d => !d.isPlaceholder);
+    if (firstRealDay) {
+      const month = new Date(firstRealDay.date + 'T00:00:00Z').getUTCMonth();
+      if (month !== lastMonth) {
+        months.push({ name: monthNames[month], weekIdx });
+        lastMonth = month;
+      }
+    }
+  });
+
+  return { weeks, months, totalContributions };
+}
 
 export default function GitHubHeatmap() {
-  const [contributions, setContributions] = useState([]);
-  const [availableYears, setAvailableYears] = useState(['2026', '2025', '2024', '2023']);
   const [selectedYear, setSelectedYear] = useState('2026');
+  const [availableYears, setAvailableYears] = useState(['2026', '2025', '2024']);
+  const [calendarData, setCalendarData] = useState({ weeks: [], months: [], totalContributions: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchContributions = async () => {
+  const fetchContributions = async (yearStr) => {
     setLoading(true);
     setError(null);
     try {
-      // Use official GitHub GraphQL API if a secret token is provided in .env
-      if (GITHUB_TOKEN) {
-        const query = `
-          query($username: String!) {
-            user(login: $username) {
-              contributionsCollection {
-                contributionCalendar {
-                  totalContributions
-                  weeks {
-                    contributionDays {
-                      contributionCount
-                      date
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `;
-        const res = await fetch('https://api.github.com/graphql', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${GITHUB_TOKEN}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ query, variables: { username: GITHUB_USERNAME } }),
-        });
-
-        if (res.ok) {
-          const json = await res.json();
-          const calendar = json.data?.user?.contributionsCollection?.contributionCalendar;
-          if (calendar) {
-            const daysList = [];
-            calendar.weeks.forEach(week => {
-              week.contributionDays.forEach(day => {
-                let level = 0;
-                if (day.contributionCount > 0 && day.contributionCount <= 2) level = 1;
-                else if (day.contributionCount <= 4) level = 2;
-                else if (day.contributionCount <= 6) level = 3;
-                else if (day.contributionCount >= 7) level = 4;
-                daysList.push({
-                  date: day.date,
-                  count: day.contributionCount,
-                  level
-                });
-              });
-            });
-            setContributions(daysList);
-            const years = Array.from(new Set(daysList.map(d => d.date.split('-')[0]))).sort((a, b) => b - a);
-            if (years.length > 0) {
-              setAvailableYears(years);
-              if (!years.includes(selectedYear)) {
-                setSelectedYear(years[0]);
-              }
-            }
-            setLoading(false);
-            return;
-          }
-        }
+      const url = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=${yearStr}`;
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`Failed to fetch GitHub data (${res.status})`);
       }
+      const data = await res.json();
+      
+      const parsedGrid = buildCalendarGrid(data.contributions || []);
+      setCalendarData(parsedGrid);
 
-      // Public API fallback
-      const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`);
-      if (!response.ok) {
-        throw new Error('Failed to retrieve GitHub contributions');
-      }
-      const data = await response.json();
-      
-      // Save all contributions
-      setContributions(data.contributions || []);
-      
-      // Determine available years dynamically if present
       if (data.total && Object.keys(data.total).length > 0) {
         const years = Object.keys(data.total).sort((a, b) => b - a);
         setAvailableYears(years);
-        if (!years.includes(selectedYear)) {
-          setSelectedYear(years[0]);
-        }
       }
     } catch (err) {
-      console.error(err);
-      setError(err.message || 'Unable to connect to Github Contributions API');
+      console.error('GitHub fetch error:', err);
+      setError(err.message || 'Unable to fetch GitHub contributions');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchContributions();
-  }, []);
+    fetchContributions(selectedYear);
+  }, [selectedYear]);
 
-  // Filter contributions by selected year
-  const filteredData = contributions.filter(day => day.date.startsWith(selectedYear));
+  const { weeks, months, totalContributions } = calendarData;
 
-  // Determine background color level based on contribution level
-  const getLevelClass = (level) => {
-    switch (level) {
-      case 1: return 'bg-gray-700 hover:scale-125';
-      case 2: return 'bg-gray-600 hover:scale-125';
-      case 3: return 'bg-gray-500 hover:scale-125';
-      case 4: return 'bg-white hover:scale-125';
-      default: return 'bg-gray-800 hover:bg-gray-700';
-    }
-  };
-
-  // Group contributions by month to display headings dynamically
-  const renderMonthHeadings = () => {
-    if (loading || error || filteredData.length === 0) {
-      return (
-        <div className="flex justify-between text-[10px] text-gray-500 mb-2 px-1">
-          <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
-        </div>
-      );
-    }
-
-    // Standard list of months
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
-    // Find unique months in the filtered data and estimate their placement index
-    const headings = [];
-    let currentMonth = -1;
-    
-    // Scan filteredData in steps to place headings
-    filteredData.forEach((day, index) => {
-      const dateObj = new Date(day.date);
-      const month = dateObj.getMonth();
-      
-      if (month !== currentMonth) {
-        currentMonth = month;
-        // Group columns approximate: index / 7 is week index
-        headings.push({
-          name: monthNames[month],
-          weekIdx: Math.floor(index / 7)
-        });
-      }
-    });
-
-    return (
-      <div className="flex justify-between text-[10px] text-gray-500 mb-2 px-1 relative w-full h-4">
-        {headings.map((h, i) => (
-          <span 
-            key={`${h.name}-${i}`} 
-            style={{ 
-              position: 'absolute', 
-              left: `${(h.weekIdx / 53) * 100}%` 
-            }}
-            className="transform -translate-x-1/2"
-          >
-            {h.name}
-          </span>
-        ))}
-      </div>
-    );
+  const getYearLabel = (yr) => {
+    if (yr === 'last') return 'Last year';
+    return yr;
   };
 
   return (
     <section className="w-full max-w-4xl mt-12 pb-10 font-mono text-center mx-auto px-4 select-none">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <h2 className="text-white text-xl tracking-widest uppercase font-bold">Personal GitHub Activity</h2>
-        <p className="text-gray-400 text-sm mt-1">(Work commits are hiding in private dimensions)</p>
       </div>
 
-      {/* Main Heatmap Widget Container */}
-      <div className="bg-[#121212] border border-gray-800 rounded-xl p-6 shadow-2xl">
+      {/* Main Heatmap Container */}
+      <div className="bg-[#121212] border border-gray-800 rounded-xl p-6 shadow-2xl overflow-hidden">
         {loading ? (
-          /* Loading Skeleton */
-          <div className="flex items-center justify-center flex-col gap-4 py-8">
-            <div className="text-xs text-gray-500 animate-pulse mb-2">Loading contributions from GitHub...</div>
-            <div className="flex items-center justify-center gap-4 overflow-x-auto w-full pb-4">
-              <div className="grid grid-flow-col grid-rows-7 gap-1 animate-pulse">
-                {Array.from({ length: 371 }).map((_, i) => (
-                  <div key={i} className="w-3 h-3 bg-gray-800/40 rounded-sm"></div>
-                ))}
-              </div>
-            </div>
+          /* Loading State */
+          <div className="flex flex-col items-center justify-center py-12 gap-3">
+            <span className="material-symbols-outlined text-green-400 animate-spin text-3xl">sync</span>
+            <div className="text-xs text-gray-500 font-mono">Fetching actual GitHub contribution graph...</div>
           </div>
         ) : error ? (
           /* Error Fallback */
-          <div className="py-8 flex flex-col items-center justify-center gap-4">
-            <span className="material-symbols-outlined text-red-500 text-4xl">error</span>
+          <div className="py-8 flex flex-col items-center justify-center gap-3">
+            <span className="material-symbols-outlined text-red-500 text-3xl">error</span>
             <div className="text-sm text-gray-400 font-bold">{error}</div>
             <button 
-              onClick={fetchContributions}
+              onClick={() => fetchContributions(selectedYear)}
               className="px-4 py-2 border border-green-500/50 text-green-400 hover:bg-green-500 hover:text-black rounded text-xs transition-colors flex items-center gap-2 mt-2"
             >
               <span className="material-symbols-outlined text-xs">refresh</span>
@@ -205,36 +149,93 @@ export default function GitHubHeatmap() {
             </button>
           </div>
         ) : (
-          /* Success Grid & Year Selector */
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+          /* Calendar & Year Selector Layout */
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-x-auto">
             
-            {/* Heatmap Grid */}
-            <div className="flex flex-col overflow-x-auto w-full max-w-2xl pb-4">
-              {renderMonthHeadings()}
-              <div className="grid grid-flow-col grid-rows-7 gap-1 w-full min-w-[600px] justify-between">
-                {filteredData.map((day) => (
-                  <div 
-                    key={day.date} 
-                    title={`${day.date}: ${day.count} commits`}
-                    className={`w-3 h-3 rounded-sm transition-transform duration-100 cursor-help ${getLevelClass(day.level)}`}
-                  />
-                ))}
+            {/* Left side: Grid with weekday labels and month headers */}
+            <div className="flex items-start gap-2 overflow-x-auto pb-2 w-full md:w-auto">
+              
+              {/* Weekday Labels (Sun-Sat rows) */}
+              <div className="flex flex-col gap-[3px] text-[9px] md:text-[10px] text-gray-500 pt-5 pr-1 select-none font-mono flex-shrink-0">
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3 opacity-0">Sun</span>
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3">Mon</span>
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3 opacity-0">Tue</span>
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3">Wed</span>
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3 opacity-0">Thu</span>
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3">Fri</span>
+                <span className="h-2.5 md:h-3 leading-[10px] md:leading-3 opacity-0">Sat</span>
+              </div>
+
+              {/* Calendar Grid Container */}
+              <div className="flex flex-col flex-shrink-0">
+                
+                {/* Month Headers */}
+                <div className="flex gap-[3px] text-[10px] text-gray-400 mb-1 h-4 relative select-none font-mono">
+                  {weeks.map((_, weekIdx) => {
+                    const monthObj = months.find(m => m.weekIdx === weekIdx);
+                    return (
+                      <div key={weekIdx} className="w-2.5 md:w-3 flex-shrink-0 relative">
+                        {monthObj && (
+                          <span className="absolute left-0 top-0 text-[10px] text-gray-400 whitespace-nowrap">
+                            {monthObj.name}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* 53-Week Grid (Columns = Weeks, Rows = Days 0..6) */}
+                <div className="flex gap-[3px]">
+                  {weeks.map((week, weekIdx) => (
+                    <div key={weekIdx} className="flex flex-col gap-[3px] flex-shrink-0">
+                      {week.map((day, dayIdx) => {
+                        if (day.isPlaceholder) {
+                          return (
+                            <div 
+                              key={`ph-${weekIdx}-${dayIdx}`} 
+                              className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-[2px] opacity-0 pointer-events-none" 
+                            />
+                          );
+                        }
+
+                        const count = day.count || 0;
+                        const formattedDate = formatDate(day.date);
+                        const tooltip = count === 0 
+                          ? `No contributions on ${formattedDate}` 
+                          : `${count} contribution${count === 1 ? '' : 's'} on ${formattedDate}`;
+
+                        return (
+                          <div
+                            key={day.date}
+                            title={tooltip}
+                            style={{ 
+                              backgroundColor: getLevelColor(day.level),
+                              border: day.level === 0 ? '1px solid rgba(255, 255, 255, 0.06)' : 'none'
+                            }}
+                            className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-[2px] transition-transform duration-100 hover:scale-125 cursor-pointer"
+                          />
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Year Selector */}
-            <div className="flex flex-row md:flex-col gap-1.5 text-xs text-gray-500 justify-center">
-              {availableYears.map((year) => (
+            {/* Right side: Year Switcher */}
+            <div className="flex flex-row md:flex-col gap-1.5 text-xs text-gray-500 self-center md:self-start flex-shrink-0">
+              {availableYears.map((yr) => (
                 <button
-                  key={year}
-                  onClick={() => setSelectedYear(year)}
+                  key={yr}
+                  onClick={() => setSelectedYear(yr)}
                   className={`px-3 py-1 border rounded transition-all whitespace-nowrap font-bold ${
-                    selectedYear === year 
-                      ? 'border-green-500 text-white bg-green-950/20' 
-                      : 'border-transparent hover:text-gray-300 hover:border-gray-700'
+                    selectedYear === yr 
+                      ? 'border-green-500 text-white bg-green-950/30' 
+                      : 'border-transparent text-gray-400 hover:text-white hover:border-gray-800'
                   }`}
                 >
-                  {year}
+                  {getYearLabel(yr)}
                 </button>
               ))}
             </div>
@@ -243,14 +244,14 @@ export default function GitHubHeatmap() {
 
         {/* Legend */}
         {!loading && !error && (
-          <div className="flex items-center justify-center gap-2 mt-6 text-[10px] text-gray-400">
+          <div className="flex items-center justify-end gap-2 mt-4 text-[10px] text-gray-400 select-none">
             <span>Less</span>
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 bg-gray-800 rounded-sm" title="0 commits"></div>
-              <div className="w-3 h-3 bg-gray-700 rounded-sm" title="1-2 commits"></div>
-              <div className="w-3 h-3 bg-gray-600 rounded-sm" title="3-4 commits"></div>
-              <div className="w-3 h-3 bg-gray-500 rounded-sm" title="5-6 commits"></div>
-              <div className="w-3 h-3 bg-white rounded-sm" title="7+ commits"></div>
+            <div className="flex gap-1 items-center">
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#161b22] border border-gray-800" title="No contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#0e4429]" title="1-2 contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#006d32]" title="3-4 contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#26a641]" title="5-6 contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#39d353]" title="7+ contributions" />
             </div>
             <span>More</span>
           </div>

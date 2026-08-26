@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DecryptedText from './DecryptedText.jsx';
 
 export default function TerminalWindow() {
   const [isOpen, setIsOpen] = useState(true);
@@ -83,7 +84,15 @@ export default function TerminalWindow() {
           </div>
           {/* Name */}
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-wide">
-            Somya Tanwar
+            <DecryptedText 
+              text="Somya Tanwar"
+              animateOn="view"
+              speed={60}
+              maxIterations={15}
+              revealDirection="center"
+              className="text-white"
+              encryptedClassName="text-green-500/80"
+            />
           </h1>
           {/* Title */}
           <p className="text-lg md:text-xl text-gray-400 mb-6">

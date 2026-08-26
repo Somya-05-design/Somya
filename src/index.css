@@ -5,6 +5,10 @@
 /* Custom Monospace Font: JetBrains Mono */
 
 @layer base {
+  html, body, *, *::before, *::after {
+    cursor: pointer !important;
+  }
+
   body {
     background-color: #161616;
     background-image: 
