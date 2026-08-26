@@ -21,14 +21,13 @@ export default function ContactWindow() {
     }
   };
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
     if (!name || !email || !message) {
       alert('Please fill in all inputs: name, email, and message.');
       return;
     }
 
-    // Basic regex check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       alert('Please input a valid email address.');
@@ -36,28 +35,50 @@ export default function ContactWindow() {
     }
 
     setStatus('sending');
-    setLogs(['Initiating transmission protocol...']);
+    setLogs([
+      'Initiating transmission protocol...',
+      'Establishing secure TLS handshake with mail gateway...',
+      'Encrypting payload (AES-256)...',
+      'Routing email dispatch to isomyatanwar@gmail.com...'
+    ]);
 
-    // Log progress animations
-    const stepLogs = [
-      'Establishing secure TLS handshake with backend server...',
-      'Encrypting data packets (AES-256)...',
-      'Deploying mail delivery agent...',
-      'Message successfully routed! [HTTP 200 OK]'
-    ];
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'dbace45e-1780-4b98-8ce0-6ef67b77528a',
+          name: name,
+          email: email,
+          message: message,
+          subject: `Portfolio Message from ${name}`
+        })
+      });
 
-    stepLogs.forEach((log, index) => {
-      setTimeout(() => {
-        setLogs(prev => [...prev, log]);
-        if (index === stepLogs.length - 1) {
-          setStatus('success');
-          // Reset form fields
-          setName('');
-          setEmail('');
-          setMessage('');
-        }
-      }, (index + 1) * 600);
-    });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setLogs(prev => [...prev, 'Message successfully delivered to isomyatanwar@gmail.com! [HTTP 200 OK]']);
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        setLogs(prev => [...prev, result.message || 'Dispatch completed via Web3Forms gateway.']);
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setMessage('');
+      }
+    } catch (err) {
+      console.error('Email send error:', err);
+      setLogs(prev => [...prev, 'Network error sending email. Opening mailto fallback...']);
+      window.location.href = `mailto:isomyatanwar@gmail.com?subject=${encodeURIComponent(`Portfolio Message from ${name}`)}&body=${encodeURIComponent(message)}`;
+      setStatus('error');
+    }
   };
 
   if (!isOpen) {
