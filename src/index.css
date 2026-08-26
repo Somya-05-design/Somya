@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Monospace Font: JetBrains Mono */
+
+@layer base {
+  body {
+    background-color: #161616;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-attachment: fixed;
+    padding-top: 3rem; /* Leave room for macOS top status bar */
+  }
+
+  /* Custom scrollbar styling for terminal feel */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #121212;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+/* Animations for macOS-style minimize, scale-open, and drag effects */
+.window-transition-enter-active,
+.window-transition-leave-active {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.window-transition-enter-from,
+.window-transition-leave-to {
+  opacity: 0;
+  transform: scale(0.92) translateY(10px);
+}
+
+/* Traffic lights icon styles inside headers */
+.traffic-light-btn::after {
+  content: '';
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  width: 100%;
+}
+
+.group:hover .traffic-light-close::after {
+  content: '×';
+  opacity: 1;
+}
+
+.group:hover .traffic-light-minimize::after {
+  content: '−';
+  opacity: 1;
+}
+
+.group:hover .traffic-light-maximize::after {
+  content: '+';
+  opacity: 1;
+}

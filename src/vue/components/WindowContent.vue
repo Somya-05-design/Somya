@@ -1,0 +1,285 @@
+<template>
+  <div class="font-mono text-xs md:text-sm leading-relaxed">
+    <!-- ============================================== -->
+    <!-- 1. ABOUT ME VIEW -->
+    <!-- ============================================== -->
+    <div v-if="type === 'about-me'" class="space-y-6 select-none font-mono">
+      <!-- Header / Logo -->
+      <div class="text-center pt-2">
+        <div class="text-green-400 font-bold text-3xl md:text-4xl tracking-wider mb-2">$_</div>
+        <h2 class="text-white text-3xl md:text-4xl font-bold tracking-wide">SomyaOS 20</h2>
+        <p class="text-gray-500 text-xs md:text-sm mt-1 tracking-widest">Version 3.141592...</p>
+      </div>
+
+      <!-- Memory Command -->
+      <div class="space-y-3 pt-2">
+        <div class="text-green-400 font-bold text-sm md:text-base flex items-center gap-2">
+          <span>$ Memory</span>
+        </div>
+        <!-- Memory Bar Chart -->
+        <div class="w-full h-9 bg-gray-900 rounded-lg overflow-hidden flex items-center text-xs font-bold border border-gray-800/60 p-0.5">
+          <div class="h-full bg-[#1b5e30] text-green-300/90 flex items-center justify-center rounded-l text-[11px] md:text-xs" style="width: 52%;">
+            Reels
+          </div>
+          <div class="h-full bg-[#22c55e] text-black flex items-center justify-center text-[11px] md:text-xs font-extrabold" style="width: 26%;">
+            Life
+          </div>
+          <div class="h-full bg-[#253243] text-gray-400 flex items-center justify-center rounded-r text-[11px] md:text-xs" style="width: 22%;">
+            Shit
+          </div>
+        </div>
+      </div>
+
+      <!-- System Info Command -->
+      <div class="space-y-4 pt-2">
+        <div class="text-green-400 font-bold text-sm md:text-base flex items-center gap-2">
+          <span>$ system_info --detailed</span>
+        </div>
+
+        <div class="space-y-4 text-xs md:text-sm">
+          <!-- Know Me -->
+          <div class="grid grid-cols-1 md:grid-cols-[110px_1fr] gap-2 md:gap-4 items-start">
+            <span class="text-white font-bold whitespace-nowrap pt-0.5">Know Me</span>
+            <p class="text-gray-300 leading-relaxed">
+              a dedicated backend software engineer who loves architecture design, API development, and building ultra-scalable services. I specialize in designing robust backend pipelines that operate with low latency and high availability.
+            </p>
+          </div>
+
+          <!-- Experience -->
+          <div class="flex justify-between items-center py-1">
+            <span class="text-white font-bold whitespace-nowrap">Experience</span>
+            <span class="text-gray-300 font-mono text-xs md:text-sm">Never Enough For You</span>
+          </div>
+
+          <!-- Creativity -->
+          <div class="flex justify-between items-center py-1">
+            <span class="text-white font-bold whitespace-nowrap">Creativity</span>
+            <span class="text-gray-300 font-mono text-xs md:text-sm">69 ZB</span>
+          </div>
+
+          <!-- Skills -->
+          <div class="grid grid-cols-1 md:grid-cols-[110px_1fr] gap-2 md:gap-4 items-center pt-1">
+            <span class="text-white font-bold whitespace-nowrap">Skills</span>
+            <div class="flex flex-wrap gap-2">
+              <span v-for="skill in ['Java', 'Spring Boot', 'JS', 'Docker', 'Ps', 'Ai', 'REST API', 'GraphQL']" 
+                    :key="skill"
+                    class="px-3 py-1 bg-[#132d1c] text-green-400 rounded border border-[#20522e] text-xs font-mono font-semibold hover:border-green-400 transition-colors">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="pt-4">
+        <a 
+          href="/resume.pdf" 
+          target="_blank"
+          download
+          class="w-full py-3.5 bg-[#22c55e] text-[#121212] font-extrabold rounded-xl hover:bg-[#1ea950] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-base md:text-lg shadow-lg"
+        >
+          <span>Download My Resume</span>
+          <span class="material-symbols-outlined text-xl">download</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 2. PROJECTS VIEW -->
+    <!-- ============================================== -->
+    <div v-else-if="type === 'projects'" class="space-y-6">
+      <div class="flex items-center gap-3 text-green-400 font-bold border-b border-gray-800 pb-2">
+        <span class="material-symbols-outlined text-base">code_blocks</span>
+        <span>$ ls projects/ -lh</span>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Project 1 -->
+        <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
+              Hyperion Gate
+            </h3>
+            <span class="text-xs text-gray-500 font-bold">Go &amp; gRPC</span>
+          </div>
+          <p class="text-gray-400 text-xs mb-3">
+            A high-performance distributed API Gateway in Go. Integrates dynamic rate limiting, token bucket validation, and JWT validation. Reaches 120k+ req/sec with sub-3ms latency.
+          </p>
+          <div class="flex gap-2">
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Go</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Redis</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Docker</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
+              Hermes PubSub Pipeline
+            </h3>
+            <span class="text-xs text-gray-500 font-bold">Python &amp; Kafka</span>
+          </div>
+          <p class="text-gray-400 text-xs mb-3">
+            A resilient real-time event ingestion and routing hub capable of ingestion speeds of 10M+ events daily with zero message loss guarantee.
+          </p>
+          <div class="flex gap-2">
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Python</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Kafka</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
+              Sentinel Key-Value DB
+            </h3>
+            <span class="text-xs text-gray-500 font-bold">C++ 17</span>
+          </div>
+          <p class="text-gray-400 text-xs mb-3">
+            An LSM-tree based persistent key-value database written from scratch. Features Memtable flushing, WAL logging, and SSTable compaction.
+          </p>
+          <div class="flex gap-2">
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">C++</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Algorithms</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Linux APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 3. EXPERIENCE VIEW -->
+    <!-- ============================================== -->
+    <div v-else-if="type === 'experience'" class="space-y-6">
+      <div class="flex items-center gap-3 text-green-400 font-bold border-b border-gray-800 pb-2">
+        <span class="material-symbols-outlined text-base">history</span>
+        <span>$ cat history_log.db</span>
+      </div>
+
+      <div class="relative border-l-2 border-gray-800 pl-6 ml-3 space-y-8 py-2">
+        <!-- Job 1 -->
+        <div class="relative">
+          <!-- Timeline dot -->
+          <div class="absolute -left-[31px] top-1 bg-green-500 border border-black w-2.5 h-2.5 rounded-full"></div>
+          <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
+            <span class="text-white font-bold text-sm md:text-base">Senior Systems Architect</span>
+            <span class="text-xs text-green-400 font-semibold">2024 - PRESENT</span>
+          </div>
+          <span class="text-xs text-gray-500 block mb-2">OmniTech Corp</span>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Leading the migration to unified Go/gRPC services. Optimized database query profiles, yielding a 40% reductions in cloud computational overhead.
+          </p>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] top-1 bg-green-500/60 border border-black w-2.5 h-2.5 rounded-full"></div>
+          <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
+            <span class="text-white font-bold text-sm md:text-base">Backend Software Engineer</span>
+            <span class="text-xs text-green-400 font-semibold">2022 - 2024</span>
+          </div>
+          <span class="text-xs text-gray-500 block mb-2">CloudWave Labs</span>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Maintained Node.js microservices. Integrated Apache Kafka event queues to stream high throughput telemetry and engineered secure REST APIs.
+          </p>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] top-1 bg-green-500/30 border border-black w-2.5 h-2.5 rounded-full"></div>
+          <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
+            <span class="text-white font-bold text-sm md:text-base">Junior Backend Intern</span>
+            <span class="text-xs text-green-400 font-semibold">2021 - 2022</span>
+          </div>
+          <span class="text-xs text-gray-500 block mb-2">ByteScale Studio</span>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Configured unit tests and automated integration testing pipelines in Python. Deployed static and serverless micro-endpoints onto AWS.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 4. SOCIAL LIFE VIEW -->
+    <!-- ============================================== -->
+    <div v-else-if="type === 'social-life'" class="space-y-6">
+      <div class="flex items-center gap-3 text-green-400 font-bold border-b border-gray-800 pb-2">
+        <span class="material-symbols-outlined text-base">connect_without_contact</span>
+        <span>$ curl --info connect/list</span>
+      </div>
+
+      <p class="text-gray-300">
+        You can reach me, track my commits, or inspect my work across the web:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+        <!-- GitHub -->
+        <a 
+          href="https://github.com/Somya-05-design" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 p-3 bg-black/40 border border-gray-800 rounded-lg hover:border-green-500 hover:text-green-400 transition-all select-none hover:-translate-y-0.5"
+        >
+          <span class="material-symbols-outlined text-base">terminal</span>
+          <div class="flex flex-col">
+            <span class="text-white text-xs font-bold font-mono">GitHub</span>
+            <span class="text-[10px] text-gray-500">@Somya-05-design</span>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a 
+          href="https://linkedin.com/in/somya-tanwar" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 p-3 bg-black/40 border border-gray-800 rounded-lg hover:border-green-500 hover:text-green-400 transition-all select-none hover:-translate-y-0.5"
+        >
+          <span class="material-symbols-outlined text-base">badge</span>
+          <div class="flex flex-col">
+            <span class="text-white text-xs font-bold font-mono">LinkedIn</span>
+            <span class="text-[10px] text-gray-500">Professional Profile</span>
+          </div>
+        </a>
+
+        <!-- Twitter/X -->
+        <a 
+          href="https://x.com/0xSomyaa" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 p-3 bg-black/40 border border-gray-800 rounded-lg hover:border-green-500 hover:text-green-400 transition-all select-none hover:-translate-y-0.5"
+        >
+          <span class="material-symbols-outlined text-base">alternate_email</span>
+          <div class="flex flex-col">
+            <span class="text-white text-xs font-bold font-mono">Twitter / X</span>
+            <span class="text-[10px] text-gray-500">Short-form thoughts</span>
+          </div>
+        </a>
+
+        <!-- Email -->
+        <a 
+          href="mailto:isomyatanwar@gmail.com" 
+          class="flex items-center gap-3 p-3 bg-black/40 border border-gray-800 rounded-lg hover:border-green-500 hover:text-green-400 transition-all select-none hover:-translate-y-0.5"
+        >
+          <span class="material-symbols-outlined text-base">mail</span>
+          <div class="flex flex-col">
+            <span class="text-white text-xs font-bold font-mono">Email Direct</span>
+            <span class="text-[10px] text-gray-500">somyatanwar@example.com</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+defineProps({
+  type: {
+    type: String,
+    required: true
+  }
+});
+</script>
