@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="folderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#55b6f6"/>
+      <stop offset="100%" stop-color="#218be2"/>
+    </linearGradient>
+    <linearGradient id="backTabGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3ea4e8"/>
+      <stop offset="100%" stop-color="#1d7fd8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Back Tab -->
+  <path d="M 14 26 C 14 20, 20 18, 26 18 L 50 18 C 56 18, 60 24, 64 28 L 110 28 C 116 28, 120 32, 120 38 L 120 100 C 120 106, 116 110, 110 110 L 18 110 C 12 110, 8 106, 8 100 Z" fill="url(#backTabGrad)"/>
+
+  <!-- Inside Paper Line -->
+  <rect x="18" y="26" width="92" height="16" rx="4" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Front Folder Body -->
+  <path d="M 12 36 L 116 36 C 122 36, 124 40, 124 46 L 124 100 C 124 108, 118 114, 110 114 L 18 114 C 10 114, 4 108, 4 100 L 4 46 C 4 40, 6 36, 12 36 Z" fill="url(#folderGrad)" filter="url(#shadow)"/>
+
+  <!-- Top Highlight Edge -->
+  <path d="M 12 37 L 116 37 C 120 37, 122 40, 122 44" stroke="#88d2ff" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- Badge Emblem: Socials / Network -->
+  <rect x="42" y="56" width="44" height="36" rx="8" fill="#186cb8" opacity="0.25"/>
+  <circle cx="64" cy="67" r="6" fill="#ffffff" opacity="0.9"/>
+  <circle cx="53" cy="81" r="4.5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="75" cy="81" r="4.5" fill="#ffffff" opacity="0.9"/>
+  <line x1="64" y1="67" x2="53" y2="81" stroke="#ffffff" stroke-width="2.5" opacity="0.9"/>
+  <line x1="64" y1="67" x2="75" y2="81" stroke="#ffffff" stroke-width="2.5" opacity="0.9"/>
+</svg>

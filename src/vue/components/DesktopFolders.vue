@@ -33,22 +33,22 @@ const folders = ref([
   {
     type: 'about-me',
     title: 'About Me',
-    img: 'https://lh3.googleusercontent.com/aida/AEtjO1XZ2YhdUqretVswbHihGpMbHNPn9Jf5ZfLvBG3OxavZ3LMbkYsqQHTf6-3ZHqGD3ZuJqjWrBqb2w6oGPyvNk9ejr3Z-HZToylZEWHkIiP8c-XfcSiffQBPAhRX_pPG4NBiMssYMH64TzPjzKMEjgSNwzyUzxsvs_ZvCG1vN54IRc3tbVZYN6-YkEN6yS6J9KSi-3nZyjRZZBXKPkwYRUUj2K0PmtbuvNtIhBzDPLP7kfVbdtdUyjA1m1HU'
+    img: '/folder-about.svg'
   },
   {
     type: 'social-life',
     title: 'Socials',
-    img: 'https://lh3.googleusercontent.com/aida/AEtjO1XU8br4d2QKccHyw2Q2H7EZkzhPDLrHd62pMi9UfLxLVCy8JFaTOpmVttkhhQiyNJIwbbVSb1Npf6sHik8cj2mprUR9c9u_BdtEGETMf2puPSG9rQS-fOA-0cSbJN6Wmecb0ipA6sDbezJw0PG1Sa9RgFwFK-XbMjcH5NFg-K1ZOza71bt0eCy3E16iJ4G7KjhAuVkht8KLJZy_MM8MS2Tbeo1lGBs9-HzBZQcP0Z0acvNID4nF1b8Fvg'
+    img: '/folder-socials.svg'
   },
   {
     type: 'projects',
     title: 'Projects',
-    img: 'https://lh3.googleusercontent.com/aida/AEtjO1XT0awo0iHKr8ogQXH6OzM_pCrYTs_AErJYIDXWVaEqhLJYvnMTPSAYOL_tbxNQQ1vmnyiGBMmpGmfkVO9E_msMC4ZUoiwCa4Dpr4H4vjCyQjZp7h8kGnsABlX9_Otsr4BA3XKyKEmq7m2ngOKDPomtpgyjBQGNbI_3bS3ZqDWWWrpJEX8S2Iqvg5I_dlRCnqtSXb4jsT-NK7y7Zn441yyXbUR2PHsMrgmxntpFd9XPPRa4M6oYouD5QnU'
+    img: '/folder-projects.svg'
   },
   {
     type: 'experience',
     title: 'Experience',
-    img: 'https://lh3.googleusercontent.com/aida/AEtjO1WpbYtV8itHm5_jbmjrUKQMRI2gEnLrMIwbyH-3ROP39-_CrptRTOnVQ3m12JKOrotUEqcMR4hx6QdKnjFT60LQGwdekmUOJ6GQIgLG3KaKeuaVg_G_t_DEgBnvDv4ROQ1pCoPmE2plawvZ9Mn-q_nkdoUSARFjtENm3eMDgXus8vyeWrk7rtSzIMsZ9ElmLmk3JE9_uxIswuXUC6rYE1Ny1LpWaozT0rrDmLVi-JhZEDlToVMA8JOaUQ'
+    img: '/folder-experience.svg'
   }
 ]);
 
