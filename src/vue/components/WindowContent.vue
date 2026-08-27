@@ -202,7 +202,9 @@ tested PDF preview accuracy and real-time order-tracking flows to ensure reliabi
           </div>
           <span class="text-xs text-gray-500 block mb-2">Walkover Web Solutions</span>
           <p class="text-gray-400 text-xs leading-relaxed">
-            Built, Tested and validated 10+ AI agents for intelligent task orchestration, collaborating with the product team to test integration into existing
+            Built, Tested and validated 10+
+            
+            AI agents for intelligent task orchestration, collaborating with the product team to test integration into existing
             SaaS workflows
           </p>
         </div>

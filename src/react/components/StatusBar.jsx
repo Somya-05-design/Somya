@@ -88,3 +88,4 @@ export default function StatusBar() {
     </div>
   );
 }
+// {Example
