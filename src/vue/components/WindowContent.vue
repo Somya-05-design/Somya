@@ -96,29 +96,41 @@
 
       <div class="space-y-4">
         <!-- Project 1 -->
-        <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
+        <a 
+          href="https://doc-station.vercel.app" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="block p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/50 hover:bg-black/50 transition-all hover:translate-x-1 group cursor-pointer select-none"
+        >
           <div class="flex justify-between items-start mb-2">
-            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
-              Docstation
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base flex items-center gap-1.5">
+              <span>Docstation</span>
+              <span class="material-symbols-outlined text-xs text-green-400 opacity-60 group-hover:opacity-100 transition-opacity">open_in_new</span>
             </h3>
             <span class="text-xs text-gray-500 font-bold">Personal Project</span>
           </div>
           <p class="text-gray-400 text-xs mb-3">
-           Built a SpringBoot full-stack platform connecting customers with local print shops for document uploads, customisation, and payment;
-tested PDF preview accuracy and real-time order-tracking flows to ensure reliability.
- </p>
-          <div class="flex gap-2">
+            Built a SpringBoot full-stack platform connecting customers with local print shops for document uploads, customisation, and payment;
+            tested PDF preview accuracy and real-time order-tracking flows to ensure reliability.
+          </p>
+          <div class="flex flex-wrap gap-2">
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Java</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">SpringBoot</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Redis</span>
           </div>
-        </div>
+        </a>
 
         <!-- Project 2 -->
-        <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
+        <a 
+          href="https://naviure.in" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="block p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/50 hover:bg-black/50 transition-all hover:translate-x-1 group cursor-pointer select-none"
+        >
           <div class="flex justify-between items-start mb-2">
-            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
-              Naviure Photography
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base flex items-center gap-1.5">
+              <span>Naviure Photography</span>
+              <span class="material-symbols-outlined text-xs text-green-400 opacity-60 group-hover:opacity-100 transition-opacity">open_in_new</span>
             </h3>
             <span class="text-xs text-gray-500 font-bold">Client Project</span>
           </div>
@@ -126,33 +138,63 @@ tested PDF preview accuracy and real-time order-tracking flows to ensure reliabi
             Developed and tested a full-stack portfolio website for a client, verifying functionality of demo modules and service showcases across
             devices.          
           </p>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap gap-2">
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">React</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Node</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">PostgreSQL</span>
-                        <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Cloudfare</span>
-
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Cloudflare</span>
           </div>
-        </div>
+        </a>
 
         <!-- Project 3 -->
-        <div class="p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/30 transition-all hover:translate-x-1 group">
+        <a 
+          href="https://famxdev.vercel.app" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="block p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/50 hover:bg-black/50 transition-all hover:translate-x-1 group cursor-pointer select-none"
+        >
           <div class="flex justify-between items-start mb-2">
-            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base">
-              Autoverse
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base flex items-center gap-1.5">
+              <span>FamX Agency</span>
+              <span class="material-symbols-outlined text-xs text-green-400 opacity-60 group-hover:opacity-100 transition-opacity">open_in_new</span>
+            </h3>
+            <span class="text-xs text-gray-500 font-bold">Client Project</span>
+          </div>
+          <p class="text-gray-400 text-xs mb-3">
+            Builted a Full Stack Project and Client Management platform with dashboard and Specified Data Rules          
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Next</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Node</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">PostgreSQL</span>
+            <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">CI/CD</span>
+          </div>
+        </a>
+
+        <!-- Project 4-->
+        <a 
+          href="https://github.com/Somya-05-design/Autoverse" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="block p-4 bg-black/30 border border-gray-800 rounded-lg hover:border-green-500/50 hover:bg-black/50 transition-all hover:translate-x-1 group cursor-pointer select-none"
+        >
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-white font-bold group-hover:text-green-400 transition-colors text-sm md:text-base flex items-center gap-1.5">
+              <span>Autoverse</span>
+              <span class="material-symbols-outlined text-xs text-green-400 opacity-60 group-hover:opacity-100 transition-opacity">open_in_new</span>
             </h3>
             <span class="text-xs text-gray-500 font-bold">Personal Project</span>
           </div>
           <p class="text-gray-400 text-xs mb-3">
-          Designed and prototyped an AI workflow automation platform, testing intuitive user experiences for prompt-driven business process
-          automation
+            Designed and prototyped an AI workflow automation platform, testing intuitive user experiences for prompt-driven business process
+            automation
           </p>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap gap-2">
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Next</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Node</span>
             <span class="text-[10px] bg-[#1a2e20]/60 text-green-300 px-2 py-0.5 rounded border border-[#2d4d38]/80">Langchain</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 
