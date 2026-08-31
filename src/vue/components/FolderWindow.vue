@@ -35,9 +35,12 @@
       </div>
 
       <!-- Window Title -->
-      <span class="text-gray-500 text-xs font-mono select-none">
-        $ {{ title }}
-      </span>
+      <div class="flex items-center gap-2">
+        <img src="/logo-green.png" alt="Logo" class="w-3.5 h-3.5 object-contain opacity-80" />
+        <span class="text-gray-500 text-xs font-mono select-none">
+          $ {{ title }}
+        </span>
+      </div>
 
       <!-- Spacer -->
       <div class="w-16"></div>

@@ -6,6 +6,15 @@ export default function TerminalWindow() {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const [zIndex, setZIndex] = useState(15);
+  const [showMoreSkills, setShowMoreSkills] = useState(false);
+
+  const initialSkills = ['Springboot', 'Java', 'Node.js', 'Kafka', 'Docker', 'Kubernetes', 'REST APIs', 'PostgreSQL', 'Redis'];
+  const extraSkills = [
+    'JavaScript', 'Python', 'TypeScript', 'C++', 'React', 'Next.js',
+    'Tailwind', 'Bootstrap', 'Shadcn', 'Clerk', 'Express.js',
+    'MongoDB', 'SQL', 'PostgreSQL', 'Firebase', 'Supabase',
+    'Postman', 'Git', 'Docker', 'Figma'
+  ];
 
   const focusWindow = () => {
     if (window.getNextZIndex) {
@@ -67,9 +76,12 @@ export default function TerminalWindow() {
         </div>
 
         {/* Center: Title */}
-        <span className="text-gray-500 text-xs font-mono select-none">
-          somya@macbook-pro: ~ (bash)
-        </span>
+        <div className="flex items-center gap-2">
+          <img src="/logo-green.png" alt="Logo" className="w-3.5 h-3.5 object-contain opacity-80" />
+          <span className="text-gray-500 text-xs font-mono select-none">
+            somya@macbook-pro: ~ (bash)
+          </span>
+        </div>
 
         {/* Spacer */}
         <div className="w-16"></div>
@@ -84,7 +96,7 @@ export default function TerminalWindow() {
           </div>
           {/* Name */}
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-wide">
-            <DecryptedText 
+            <DecryptedText
               text="Somya Tanwar"
               animateOn="view"
               speed={60}
@@ -105,7 +117,7 @@ export default function TerminalWindow() {
           </div>
           {/* Skills Tags */}
           <div className="flex flex-wrap gap-2.5 mb-6">
-            {['Springboot', 'Java', 'Node.js', 'Kafka', 'Docker', 'Kubernetes', 'REST APIs', 'PostgreSQL', 'Redis'].map((skill) => (
+            {initialSkills.map((skill) => (
               <span
                 key={skill}
                 className="px-3.5 py-1.5 bg-[#1a2e20]/60 text-green-300 rounded border border-[#2d4d38]/80 text-xs md:text-sm hover:border-green-400 hover:bg-[#1a2e20] transition-colors"
@@ -113,6 +125,25 @@ export default function TerminalWindow() {
                 {skill}
               </span>
             ))}
+
+            {showMoreSkills && extraSkills.map((skill, idx) => (
+              <span
+                key={`${skill}-${idx}`}
+                className="px-3.5 py-1.5 bg-[#1a2e20]/90 text-green-300 rounded border border-green-500/60 text-xs md:text-sm hover:border-green-400 hover:bg-[#233d2b] transition-all animate-fade-in"
+              >
+                {skill}
+              </span>
+            ))}
+
+            <button
+              onClick={() => setShowMoreSkills(!showMoreSkills)}
+              className="px-3.5 py-1.5 bg-[#181818] text-green-400 font-mono text-xs md:text-sm rounded border border-green-500/50 hover:bg-green-500 hover:text-black transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
+            >
+              <span>{showMoreSkills ? '$ skills --collapse' : '$ See more'}</span>
+              <span className="material-symbols-outlined text-xs">
+                {showMoreSkills ? 'expand_less' : 'expand_more'}
+              </span>
+            </button>
           </div>
 
           {/* Prompt ready */}
