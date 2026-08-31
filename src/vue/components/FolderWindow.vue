@@ -141,11 +141,11 @@ const windowStyles = computed(() => {
 
   return {
     position: 'fixed',
-    left: `${position.value.x}px`,
-    top: `${position.value.y}px`,
+    left: isMobile ? '5vw' : `${position.value.x}px`,
+    top: isMobile ? '3.5rem' : `${position.value.y}px`,
     width: isMobile ? '90vw' : '70vw',
-    height: isMinimized.value ? 'auto' : '70vh',
-    maxHeight: '85vh',
+    height: isMinimized.value ? 'auto' : (isMobile ? 'calc(100vh - 5rem)' : '70vh'),
+    maxHeight: isMobile ? 'calc(100vh - 5rem)' : '85vh',
     zIndex: zIndex.value
   };
 });

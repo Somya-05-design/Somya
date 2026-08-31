@@ -1,12 +1,10 @@
 <template>
-  <!-- Transparent global container, allowing clicks to pass through to elements underneath -->
-  <div class="pointer-events-none fixed inset-0 z-30 overflow-hidden">
+  <!-- Global container for active folder windows overlay -->
+  <div v-if="activeWindows.length > 0" class="fixed inset-0 z-[100] pointer-events-none">
     <!-- Semi-transparent backdrop when folder windows are active -->
     <div 
-      v-if="activeWindows.length > 0"
-      class="fixed inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-auto transition-opacity duration-200"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm pointer-events-auto transition-opacity duration-200"
       @click="closeAllWindows"
-      @touchstart="closeAllWindows"
     />
 
     <!-- Render all active folder windows -->
@@ -17,7 +15,7 @@
       :type="win.type"
       :index="idx"
       @close="closeWindow(win.id)"
-      class="pointer-events-auto relative z-30"
+      class="pointer-events-auto"
     >
       <WindowContent :type="win.type" />
     </FolderWindow>

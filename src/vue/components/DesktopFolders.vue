@@ -3,10 +3,8 @@
     <div 
       v-for="folder in folders" 
       :key="folder.type"
-      @click="openFolder(folder.type, folder.title)"
-      @dblclick="openFolder(folder.type, folder.title)"
-      @touchend="handleTouch(folder.type, folder.title)"
-      class="flex flex-col items-center gap-2 w-24 group cursor-pointer transition-transform active:scale-95"
+      @click.stop="openFolder(folder.type, folder.title)"
+      class="flex flex-col items-center gap-2 w-24 group cursor-pointer transition-transform active:scale-95 select-none"
     >
       <div class="relative p-1 rounded-lg group-hover:bg-green-500/10 transition-colors">
         <img 
@@ -57,21 +55,5 @@ const openFolder = (type, title) => {
   window.dispatchEvent(new CustomEvent('open-folder-window', {
     detail: { type, title }
   }));
-};
-
-// Double-tap/click logic for mobile
-let lastTap = 0;
-const handleTouch = (type, title) => {
-  const currentTime = new Date().getTime();
-  const tapDelay = 300;
-  if (currentTime - lastTap < tapDelay) {
-    openFolder(type, title);
-  } else {
-    // If mobile, single tap works too for better accessibility!
-    if (window.innerWidth < 768) {
-      openFolder(type, title);
-    }
-  }
-  lastTap = currentTime;
 };
 </script>
