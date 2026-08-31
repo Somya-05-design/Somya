@@ -74,13 +74,13 @@
       <!-- Action Button -->
       <div class="pt-4">
         <a 
-          href="/resume.pdf" 
+          href="https://drive.google.com/file/d/1zow2fJpklOvULurOL7pqC6ans9OfGT_A/view?usp=sharing" 
           target="_blank"
-          download
+          rel="noopener noreferrer"
           class="w-full py-3.5 bg-[#22c55e] text-[#121212] font-extrabold rounded-xl hover:bg-[#1ea950] active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-base md:text-lg shadow-lg"
         >
-          <span>Download My Resume</span>
-          <span class="material-symbols-outlined text-xl">download</span>
+          <span>See My Resume</span>
+          <span class="material-symbols-outlined text-xl">open_in_new</span>
         </a>
       </div>
     </div>
