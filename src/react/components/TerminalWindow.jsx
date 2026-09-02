@@ -77,7 +77,6 @@ export default function TerminalWindow() {
 
         {/* Center: Title */}
         <div className="flex items-center gap-2">
-          <img src="/logo-green.png" alt="Logo" className="w-3.5 h-3.5 object-contain opacity-80" />
           <span className="text-gray-500 text-xs font-mono select-none">
             somya@macbook-pro: ~ (bash)
           </span>

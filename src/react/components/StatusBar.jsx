@@ -31,11 +31,6 @@ export default function StatusBar() {
     <div className="fixed top-0 left-0 w-full h-8 bg-[#121212]/80 backdrop-blur-md border-b border-gray-800/40 text-gray-300 font-mono text-xs flex items-center justify-between px-4 z-50 select-none">
       {/* Left side: Terminal Menu */}
       <div className="flex items-center gap-2.5">
-        <img
-          src="/logo-green.png"
-          alt="Somya Logo"
-          className="w-4 h-4 object-contain select-none cursor-default hover:scale-110 transition-transform"
-        />
         <span className="font-bold text-white cursor-default">Somya's Terminal</span>
         <div className="hidden md:flex gap-4 text-gray-400">
           <span className="hover:text-green-400 cursor-default transition-colors">File</span>
