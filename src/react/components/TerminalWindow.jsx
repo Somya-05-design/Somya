@@ -108,7 +108,7 @@ export default function TerminalWindow() {
           </h1>
           {/* Title */}
           <p className="text-lg md:text-xl text-gray-400 mb-6">
-            Backend Enthusiast & FreeLancer
+            Backend Enthusiast & Freelancer
           </p>
 
           {/* Command 2 */}
