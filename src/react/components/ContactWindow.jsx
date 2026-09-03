@@ -86,7 +86,7 @@ export default function ContactWindow() {
       <div className="fixed bottom-16 right-4 z-50">
         <button
           onClick={() => { setIsOpen(true); focusWindow(); }}
-          className="bg-[#121212] border border-green-500 text-green-400 font-mono text-xs px-4 py-2 rounded-lg shadow-xl flex items-center gap-2 hover:bg-green-500 hover:text-black transition-all"
+          className="bg-[#121212] border border-gray-500 text-gray-200 font-mono text-xs px-4 py-2 rounded-lg shadow-xl flex items-center gap-2 hover:bg-gray-200 hover:text-black transition-all"
         >
           <span className="material-symbols-outlined text-sm">mail</span>
           Restore Contact Term
@@ -146,21 +146,21 @@ export default function ContactWindow() {
         <div className={isMaximized ? "p-6 md:p-8 font-mono overflow-y-auto max-h-[calc(100vh-6rem)]" : "p-6 md:p-8 font-mono"}>
           {/* Static Email */}
           <div className="mb-8">
-            <div className="mb-2"><span className="text-green-400 font-bold">$ contact --email</span></div>
+            <div className="mb-2"><span className="text-gray-300 font-bold">$ contact --email</span></div>
             <a
               href="mailto:isomyatanwar@gmail.com"
-              className="inline-block px-4 py-2 bg-[#1a2e20]/60 text-green-300 rounded border border-[#2d4d38]/85 hover:border-green-400 hover:bg-[#1a2e20] transition-colors"
+              className="inline-block px-4 py-2 bg-gray-900/60 text-gray-300 rounded border border-gray-700/85 hover:border-gray-400 hover:bg-gray-800 transition-colors"
             >
               isomyatanwar@gmail.com
             </a>
           </div>
 
           <div className="mb-6">
-            <div className="mb-4"><span className="text-green-400 font-bold">$ send-message</span></div>
+            <div className="mb-4"><span className="text-gray-300 font-bold">$ send-message</span></div>
 
             {status === 'sending' || status === 'success' ? (
               /* Terminal sending logs simulation */
-              <div className="bg-black/40 border border-gray-800 rounded p-6 space-y-2.5 text-xs md:text-sm text-green-400 min-h-[220px]">
+              <div className="bg-black/40 border border-gray-800 rounded p-6 space-y-2.5 text-xs md:text-sm text-gray-300 min-h-[220px]">
                 {logs.map((log, idx) => (
                   <div key={idx} className="flex gap-2">
                     <span className="text-gray-500 font-bold">&gt;&gt;</span>
@@ -173,7 +173,7 @@ export default function ContactWindow() {
                     <span className="text-gray-400">Your message is securely stored. I'll get back to you shortly.</span>
                     <button
                       onClick={() => setStatus('idle')}
-                      className="w-40 mt-4 px-3 py-1.5 border border-green-500/50 text-green-400 rounded hover:bg-green-500 hover:text-black transition-colors"
+                      className="w-40 mt-4 px-3 py-1.5 border border-gray-500/50 text-gray-300 rounded hover:bg-gray-200 hover:text-black transition-colors"
                     >
                       Send Another
                     </button>
@@ -184,36 +184,36 @@ export default function ContactWindow() {
               /* Input Form */
               <form onSubmit={handleSend} className="space-y-4">
                 <div className="flex flex-col gap-2">
-                  <label className="text-green-400 font-bold text-sm">$ name:</label>
+                  <label className="text-gray-300 font-bold text-sm">$ name:</label>
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    className="w-full bg-[#121212] border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-green-500 transition-colors"
+                    className="w-full bg-[#121212] border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-gray-400 transition-colors"
                     type="text"
                     placeholder="Somya's Guest"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-green-400 font-bold text-sm">$ email:</label>
+                  <label className="text-gray-300 font-bold text-sm">$ email:</label>
                   <input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full bg-[#121212] border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-green-500 transition-colors"
+                    className="w-full bg-[#121212] border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-gray-400 transition-colors"
                     type="email"
                     placeholder="guest@example.com"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-green-400 font-bold text-sm">$ message:</label>
+                  <label className="text-gray-300 font-bold text-sm">$ message:</label>
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
-                    className="w-full bg-[#121212] border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-green-500 transition-colors"
+                    className="w-full bg-[#121212] border border-gray-800 rounded p-3 text-white focus:outline-none focus:border-gray-400 transition-colors"
                     rows="4"
                     placeholder="Hello Somya, love the macOS desktop!"
                   />
@@ -221,7 +221,7 @@ export default function ContactWindow() {
 
                 <button
                   type="submit"
-                  className="w-full mt-6 py-4 bg-green-500 text-[#121212] font-bold rounded-lg hover:bg-green-400 active:scale-[0.99] transition-all text-lg"
+                  className="w-full mt-6 py-4 bg-gray-200 text-[#121212] font-bold rounded-lg hover:bg-white active:scale-[0.99] transition-all text-lg"
                 >
                   SendMessage()
                 </button>

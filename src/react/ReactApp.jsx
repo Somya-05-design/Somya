@@ -47,7 +47,7 @@ export default function ReactApp() {
 
       {/* Quote Separator */}
       <section className="w-full max-w-4xl my-12 text-center font-mono">
-        <p className="text-green-400 text-lg md:text-xl font-bold uppercase tracking-widest animate-pulse">
+        <p className="text-white text-lg md:text-xl font-bold uppercase tracking-widest animate-pulse">
           WITH GREAT POWERS COMES GREAT RESPONSIBILITIES
         </p>
       </section>
@@ -93,14 +93,14 @@ export default function ReactApp() {
 
       {/* Invitation Quote */}
       <section className="w-full max-w-4xl mt-6 mb-12 text-center font-mono">
-        <p className="text-green-400 text-lg md:text-xl font-bold uppercase tracking-widest">
+        <p className="text-white text-lg md:text-xl font-bold uppercase tracking-widest">
           you came till the end, shows you're intrested, lets have a chat
         </p>
       </section>
 
       {/* Footer */}
       <footer className="w-full max-w-4xl text-center font-mono border-t border-gray-900 pt-8">
-        <p className="text-green-400 text-sm uppercase tracking-widest">somya portfolio @2026</p>
+        <p className="text-gray-400 text-sm uppercase tracking-widest">somya portfolio @2026</p>
       </footer>
     </div>
   );

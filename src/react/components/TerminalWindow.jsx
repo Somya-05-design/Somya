@@ -27,7 +27,7 @@ export default function TerminalWindow() {
       <div className="fixed bottom-4 right-4 z-50">
         <button
           onClick={() => { setIsOpen(true); focusWindow(); }}
-          className="bg-[#121212] border border-green-500 text-green-400 font-mono text-xs px-4 py-2 rounded-lg shadow-xl flex items-center gap-2 hover:bg-green-500 hover:text-black transition-all"
+          className="bg-[#121212] border border-gray-500 text-gray-200 font-mono text-xs px-4 py-2 rounded-lg shadow-xl flex items-center gap-2 hover:bg-gray-200 hover:text-black transition-all"
         >
           <span className="material-symbols-outlined text-sm">terminal</span>
           Restore Terminal
@@ -91,7 +91,7 @@ export default function TerminalWindow() {
         <div className="px-8 py-6 font-mono overflow-y-auto max-h-[70vh]" data-purpose="terminal-content">
           {/* Command 1 */}
           <div className="mt-2 mb-2">
-            <span className="text-green-400 font-bold">$ who.am.i</span>
+            <span className="text-gray-300 font-bold">$ who.am.i</span>
           </div>
           {/* Name */}
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-wide">
@@ -102,7 +102,7 @@ export default function TerminalWindow() {
               maxIterations={15}
               revealDirection="center"
               className="text-white"
-              encryptedClassName="text-green-500/80"
+              encryptedClassName="text-gray-500/80"
             />
           </h1>
           {/* Title */}
@@ -112,14 +112,14 @@ export default function TerminalWindow() {
 
           {/* Command 2 */}
           <div className="mb-3">
-            <span className="text-green-400 font-bold">$ skills --list</span>
+            <span className="text-gray-300 font-bold">$ skills --list</span>
           </div>
           {/* Skills Tags */}
           <div className="flex flex-wrap gap-2.5 mb-6">
             {initialSkills.map((skill) => (
               <span
                 key={skill}
-                className="px-3.5 py-1.5 bg-[#1a2e20]/60 text-green-300 rounded border border-[#2d4d38]/80 text-xs md:text-sm hover:border-green-400 hover:bg-[#1a2e20] transition-colors"
+                className="px-3.5 py-1.5 bg-gray-900/60 text-gray-300 rounded border border-gray-700/80 text-xs md:text-sm hover:border-gray-400 hover:bg-gray-800 transition-colors"
               >
                 {skill}
               </span>
@@ -128,7 +128,7 @@ export default function TerminalWindow() {
             {showMoreSkills && extraSkills.map((skill, idx) => (
               <span
                 key={`${skill}-${idx}`}
-                className="px-3.5 py-1.5 bg-[#1a2e20]/90 text-green-300 rounded border border-green-500/60 text-xs md:text-sm hover:border-green-400 hover:bg-[#233d2b] transition-all animate-fade-in"
+                className="px-3.5 py-1.5 bg-gray-900/90 text-gray-300 rounded border border-gray-600/60 text-xs md:text-sm hover:border-gray-400 hover:bg-gray-800 transition-all animate-fade-in"
               >
                 {skill}
               </span>
@@ -136,7 +136,7 @@ export default function TerminalWindow() {
 
             <button
               onClick={() => setShowMoreSkills(!showMoreSkills)}
-              className="px-3.5 py-1.5 bg-[#181818] text-green-400 font-mono text-xs md:text-sm rounded border border-green-500/50 hover:bg-green-500 hover:text-black transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
+              className="px-3.5 py-1.5 bg-[#181818] text-gray-300 font-mono text-xs md:text-sm rounded border border-gray-600/50 hover:bg-gray-200 hover:text-black transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
             >
               <span>{showMoreSkills ? '$ skills --collapse' : '$ See more'}</span>
               <span className="material-symbols-outlined text-xs">
@@ -146,9 +146,9 @@ export default function TerminalWindow() {
           </div>
 
           {/* Prompt ready */}
-          <div className="flex items-center gap-2 text-green-400/80 text-xs md:text-sm border-t border-gray-900 pt-4 mt-6">
+          <div className="flex items-center gap-2 text-gray-400 text-xs md:text-sm border-t border-gray-900 pt-4 mt-6">
             <span>$ open desktop_folders/</span>
-            <span className="w-2 h-4 bg-green-400 animate-pulse"></span>
+            <span className="w-2 h-4 bg-gray-300 animate-pulse"></span>
           </div>
         </div>
       )}

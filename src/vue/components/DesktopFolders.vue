@@ -6,14 +6,14 @@
       @click.stop="openFolder(folder.type, folder.title)"
       class="flex flex-col items-center gap-2 w-24 group cursor-pointer transition-transform active:scale-95 select-none"
     >
-      <div class="relative p-1 rounded-lg group-hover:bg-green-500/10 transition-colors">
+      <div class="relative p-1 rounded-lg group-hover:bg-white/10 transition-colors">
         <img 
           :alt="folder.title" 
           class="w-16 h-16 shadow-xl object-contain filter hover:brightness-110"
           :src="folder.img"
         />
       </div>
-      <span class="text-white font-mono text-xs md:text-sm bg-black/40 px-2 py-0.5 rounded border border-transparent group-hover:border-green-500/30 group-hover:text-green-400 text-center transition-all select-none">
+      <span class="text-white font-mono text-xs md:text-sm bg-black/40 px-2 py-0.5 rounded border border-transparent group-hover:border-gray-500/50 group-hover:text-white text-center transition-all select-none">
         {{ folder.title }}
       </span>
       <!-- Hint helper for desktop/mobile -->

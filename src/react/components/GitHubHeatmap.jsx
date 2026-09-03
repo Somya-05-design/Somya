@@ -10,13 +10,13 @@ function formatDate(dateStr) {
   return `${monthNames[dateObj.getUTCMonth()]} ${dateObj.getUTCDate()}, ${dateObj.getUTCFullYear()}`;
 }
 
-// Map contribution level to GitHub's official dark mode calendar colors
+// Map contribution level to GitHub calendar colors (Greyscale theme)
 function getLevelColor(level) {
   switch (level) {
-    case 1: return '#0e4429';
-    case 2: return '#006d32';
-    case 3: return '#26a641';
-    case 4: return '#39d353';
+    case 1: return '#2e2e2e';
+    case 2: return '#555555';
+    case 3: return '#888888';
+    case 4: return '#cccccc';
     default: return '#161b22';
   }
 }
@@ -132,7 +132,7 @@ export default function GitHubHeatmap() {
         {loading ? (
           /* Loading State */
           <div className="flex flex-col items-center justify-center py-12 gap-3">
-            <span className="material-symbols-outlined text-green-400 animate-spin text-3xl">sync</span>
+            <span className="material-symbols-outlined text-gray-300 animate-spin text-3xl">sync</span>
             <div className="text-xs text-gray-500 font-mono">Fetching actual GitHub contribution graph...</div>
           </div>
         ) : error ? (
@@ -142,7 +142,7 @@ export default function GitHubHeatmap() {
             <div className="text-sm text-gray-400 font-bold">{error}</div>
             <button 
               onClick={() => fetchContributions(selectedYear)}
-              className="px-4 py-2 border border-green-500/50 text-green-400 hover:bg-green-500 hover:text-black rounded text-xs transition-colors flex items-center gap-2 mt-2"
+              className="px-4 py-2 border border-gray-500/50 text-gray-300 hover:bg-gray-200 hover:text-black rounded text-xs transition-colors flex items-center gap-2 mt-2"
             >
               <span className="material-symbols-outlined text-xs">refresh</span>
               Retry Connection
@@ -231,7 +231,7 @@ export default function GitHubHeatmap() {
                   onClick={() => setSelectedYear(yr)}
                   className={`px-3 py-1 border rounded transition-all whitespace-nowrap font-bold ${
                     selectedYear === yr 
-                      ? 'border-green-500 text-white bg-green-950/30' 
+                      ? 'border-gray-400 text-white bg-gray-800/60' 
                       : 'border-transparent text-gray-400 hover:text-white hover:border-gray-800'
                   }`}
                 >
@@ -248,10 +248,10 @@ export default function GitHubHeatmap() {
             <span>Less</span>
             <div className="flex gap-1 items-center">
               <div className="w-2.5 h-2.5 rounded-[2px] bg-[#161b22] border border-gray-800" title="No contributions" />
-              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#0e4429]" title="1-2 contributions" />
-              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#006d32]" title="3-4 contributions" />
-              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#26a641]" title="5-6 contributions" />
-              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#39d353]" title="7+ contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#2e2e2e]" title="1-2 contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#555555]" title="3-4 contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#888888]" title="5-6 contributions" />
+              <div className="w-2.5 h-2.5 rounded-[2px] bg-[#cccccc]" title="7+ contributions" />
             </div>
             <span>More</span>
           </div>

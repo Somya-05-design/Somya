@@ -33,12 +33,12 @@ export default function StatusBar() {
       <div className="flex items-center gap-2.5">
         <span className="font-bold text-white cursor-default">Somya's Terminal</span>
         <div className="hidden md:flex gap-4 text-gray-400">
-          <span className="hover:text-green-400 cursor-default transition-colors">File</span>
-          <span className="hover:text-green-400 cursor-default transition-colors">Edit</span>
-          <span className="hover:text-green-400 cursor-default transition-colors">View</span>
-          <span className="hover:text-green-400 cursor-default transition-colors">Go</span>
-          <span className="hover:text-green-400 cursor-default transition-colors">Window</span>
-          <span className="hover:text-green-400 cursor-default transition-colors">Help</span>
+          <span className="hover:text-white cursor-default transition-colors">File</span>
+          <span className="hover:text-white cursor-default transition-colors">Edit</span>
+          <span className="hover:text-white cursor-default transition-colors">View</span>
+          <span className="hover:text-white cursor-default transition-colors">Go</span>
+          <span className="hover:text-white cursor-default transition-colors">Window</span>
+          <span className="hover:text-white cursor-default transition-colors">Help</span>
         </div>
       </div>
 
@@ -51,10 +51,10 @@ export default function StatusBar() {
           onMouseLeave={() => setActiveTooltip(null)}
           onClick={() => setActiveTooltip(activeTooltip === 'battery' ? null : 'battery')}
         >
-          <span className="material-symbols-outlined text-sm hover:text-green-400 transition-colors">battery_full</span>
+          <span className="material-symbols-outlined text-sm hover:text-white transition-colors">battery_full</span>
 
           {activeTooltip === 'battery' && (
-            <div className="absolute right-0 top-7 bg-[#121212] border border-green-500/30 text-green-300 px-3 py-1.5 rounded shadow-xl whitespace-nowrap z-50 text-[11px] animate-fade-in">
+            <div className="absolute right-0 top-7 bg-[#121212] border border-gray-600/50 text-gray-200 px-3 py-1.5 rounded shadow-xl whitespace-nowrap z-50 text-[11px] animate-fade-in">
               Always full after the coffee ☕
             </div>
           )}
@@ -67,20 +67,20 @@ export default function StatusBar() {
           onMouseLeave={() => setActiveTooltip(null)}
           onClick={() => setActiveTooltip(activeTooltip === 'wifi' ? null : 'wifi')}
         >
-          <span className="material-symbols-outlined text-sm hover:text-green-400 transition-colors">wifi</span>
+          <span className="material-symbols-outlined text-sm hover:text-white transition-colors">wifi</span>
 
           {activeTooltip === 'wifi' && (
-            <div className="absolute right-0 top-7 bg-[#121212] border border-green-500/30 text-green-300 px-3 py-1.5 rounded shadow-xl w-64 md:w-80 whitespace-normal z-50 text-[11px] leading-relaxed text-right animate-fade-in">
+            <div className="absolute right-0 top-7 bg-[#121212] border border-gray-600/50 text-gray-200 px-3 py-1.5 rounded shadow-xl w-64 md:w-80 whitespace-normal z-50 text-[11px] leading-relaxed text-right animate-fade-in">
               lol! makes sense obviously you're connected thats why you're here
             </div>
           )}
         </div>
 
         {/* Search Icon */}
-        <span className="material-symbols-outlined text-sm cursor-default hover:text-green-400 transition-colors">search</span>
+        <span className="material-symbols-outlined text-sm cursor-default hover:text-white transition-colors">search</span>
 
         {/* Dynamic Date & Time */}
-        <span className="text-white hover:text-green-400 cursor-default transition-colors font-semibold">
+        <span className="text-white hover:text-white cursor-default transition-colors font-semibold">
           {timeStr}
         </span>
       </div>
