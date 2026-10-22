@@ -258,6 +258,20 @@
       </div>
 
       <div class="relative border-l-2 border-gray-800 pl-6 ml-3 space-y-8 py-2">
+       <!-- Job 0 -->
+        <div class="relative">
+          <!-- Timeline dot -->
+          <div class="absolute -left-[31px] top-1 bg-gray-300 border border-black w-2.5 h-2.5 rounded-full"></div>
+          <div class="flex flex-col md:flex-row md:justify-between mb-1.5">
+            <span class="text-white font-bold text-sm md:text-base">Associate Trainee</span>
+            <span class="text-xs text-gray-400 font-semibold">Oct'26 - Present</span>
+          </div>
+          <span class="text-xs text-gray-500 block mb-2">Nekstar Technologies</span>
+          <p class="text-gray-400 text-xs leading-relaxed">
+          Currently working as an Associate Trainee 
+          </p>
+        </div>
+
         <!-- Job 1 -->
         <div class="relative">
           <!-- Timeline dot -->
